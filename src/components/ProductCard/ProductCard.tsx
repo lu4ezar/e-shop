@@ -7,7 +7,7 @@ const ProductCard = (props: any) => (
     <HeadingText pxSize={16}>{props.productName}</HeadingText>
     <img alt="product" src="https://www.fillmurray.com/250/300" />
     <span>Super Price: $99</span>
-    <button>Add to cart</button>
+    <button onClick={props.onClick}>Add to cart</button>
   </div>
 );
 

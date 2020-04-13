@@ -1,15 +1,14 @@
 import React from "react";
-import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Homepage from "../Homepage";
 import Cart from "../Cart";
 import Order from "../Order";
+import Header from "../Header/Header";
 
 function App() {
   return (
     <Router>
-      <Link to="/">Home</Link>
-      <Link to="/cart">Cart</Link>
-      <Link to="/order">Order</Link>
+      <Header />
       <Switch>
         <Route path="/cart">
           <Cart />

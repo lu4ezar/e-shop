@@ -4,15 +4,15 @@ import ProductCard from "../ProductCard";
 import "./Homepage.scss";
 import { cartSlice } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { Product } from "../../interfaces";
+import { Product, Id } from "../../interfaces";
 import { selectCatalog } from "../../redux/selectors";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { addProduct } = cartSlice.actions;
   const catalog = useSelector(selectCatalog);
-  const handleClick = (product: Product) => {
-    dispatch(addProduct(product));
+  const handleClick = (id: Id) => {
+    dispatch(addProduct(id));
   };
   return (
     <div>
@@ -24,7 +24,7 @@ const Home = () => {
               <ProductCard
                 key={isbn13}
                 {...productData}
-                onClick={() => handleClick(productData)}
+                onClick={() => handleClick(isbn13 as Id)}
               />
             ))
           : null}

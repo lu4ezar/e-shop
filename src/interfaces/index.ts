@@ -7,4 +7,8 @@ export interface Product {
   url: string;
 }
 
+export interface ProductCardProps extends Product {
+  onClick: () => void;
+}
+
 export type Catalog = Array<Product>;

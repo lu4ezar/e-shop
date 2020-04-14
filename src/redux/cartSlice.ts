@@ -7,7 +7,12 @@ export const cartSlice = createSlice({
   reducers: {
     addProduct: (state, action: PayloadAction<Cart["id"]>) => {
       const { payload } = action;
-      const prevValue = (state[payload as keyof Cart] as number) || 0;
+      const curValue = (state[payload as keyof Cart] as number) || 0;
+      return {
+        ...state,
+        [payload]: curValue + 1,
+      };
+    },
       return {
         ...state,
         [payload]: prevValue + 1,

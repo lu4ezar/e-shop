@@ -1,0 +1,17 @@
+.Cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5em;
+}
+.cart_products {
+  display: flex;
+  flex-direction: column;
+  margin: 3em;
+  width: 60%;
+}
+
+.cart_product {
+  display: flex;
+  justify-content: space-between;
+}

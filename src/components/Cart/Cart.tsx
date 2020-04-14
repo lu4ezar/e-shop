@@ -2,15 +2,32 @@ import React from "react";
 import { Link } from "react-router-dom";
 import HeadingText from "../shared/HeadingText";
 import { useSelector } from "react-redux";
-import { getTotalPrice } from "../../redux/selectors";
+import {
+  getTotalProduct,
+  getTotalPrice,
+  getProductsByIds,
+} from "../../redux/selectors";
+import { CartInfo } from "../../interfaces";
+import "./Cart.scss";
 
 const Cart = () => {
-  const totalSum = useSelector(getTotalPrice);
+  const totalProduct = useSelector(getTotalProduct);
+  const totalPrice = useSelector(getTotalPrice);
+  const cartInfo = useSelector(getProductsByIds);
   return (
-    <div>
+    <div className="Cart">
       <HeadingText pxSize={32}>Cart</HeadingText>
-      <div>There are about 500 products in your cart.</div>
-      <div>Total Sum: ${totalSum}</div>
+      <div className="cart_products">
+        {cartInfo.map(({ id, title, price, quantity }: CartInfo) => (
+          <div className="cart_product" key={id}>
+            {title}
+            <span>{price}</span>
+            <span>Qty: {quantity}</span>
+          </div>
+        ))}
+      </div>
+      <div>Total Products: {totalProduct}</div>
+      <div>Total Sum: {totalPrice}</div>
       <Link to="/order">BUY</Link>
     </div>
   );

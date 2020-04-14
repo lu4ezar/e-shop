@@ -1,13 +1,31 @@
+export type Title = string;
+export type Subtitle = string;
+export type Id = string;
+export type Price = string;
+export type Image = string;
+export type Url = string;
+export type Quantity = number;
+
 export interface Product {
-  title: string;
-  subtitle: string;
-  isbn13?: string;
-  price: string;
-  image: string;
-  url: string;
+  title: Title;
+  subtitle: Subtitle;
+  isbn13?: Id;
+  price: Price;
+  image: Image;
+  url?: Url;
 }
 
-export type Cart = Product[];
+export interface Cart {
+  id: Id;
+  quantity: Quantity;
+}
+
+export interface CartInfo {
+  id: Id;
+  title: Title;
+  price: Price;
+  quantity: Quantity;
+}
 
 export interface ProductCardProps extends Product {
   onClick: () => void;

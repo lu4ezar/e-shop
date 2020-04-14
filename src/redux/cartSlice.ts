@@ -13,7 +13,10 @@ export const cartSlice = createSlice({
         [payload]: prevValue + 1,
       };
     },
-    removeProduct: (state, action) => {},
+    deleteProduct: (state, action: PayloadAction<Cart["id"]>) => {
+      const { payload } = action;
+      delete state[payload as keyof Cart];
+    },
   },
 });
 

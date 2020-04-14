@@ -1,14 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-export type Cart = Array<{
-  title: string;
-  price: string;
-  quantity: number;
-}>;
+import { Cart } from "../interfaces";
 
 export const cartSlice = createSlice({
   name: "cart",
-  initialState: {} as Cart,
+  initialState: [] as Cart,
   reducers: {
     addProduct: (state, action) => action.payload,
     removeProduct: (state, action) => action.payload,

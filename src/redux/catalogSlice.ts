@@ -6,8 +6,9 @@ export const fetchProducts = createAsyncThunk(
     const url = "https://api.itbook.store/1.0/new";
     const proxy = "https://cors-anywhere.herokuapp.com";
     const response = await fetch(`${proxy}/${url}`);
-    const catalog = await response.json();
-    return catalog;
+    const catalogJSON = await response.json();
+    const { books } = catalogJSON;
+    return books;
   }
 );
 

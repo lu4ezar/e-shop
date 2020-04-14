@@ -19,7 +19,7 @@ export const catalogSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
-      state.catalog = action.payload;
+      state.push(...action.payload);
     });
   },
 });

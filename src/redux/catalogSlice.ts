@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { Catalog } from "../interfaces";
 
 export const fetchProducts = createAsyncThunk(
@@ -18,9 +18,12 @@ export const catalogSlice = createSlice({
   initialState: [] as Catalog,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchProducts.fulfilled, (state, action) => {
-      state.push(...action.payload);
-    });
+    builder.addCase(
+      fetchProducts.fulfilled,
+      (state, action: PayloadAction<Catalog>) => {
+        state.push(...action.payload);
+      }
+    );
   },
 });
 

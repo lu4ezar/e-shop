@@ -36,11 +36,12 @@ export const getCartQuantities = createSelector(
 export const getTotalPrice = createSelector(
   [getCartIds, getCartPrices, getCartQuantities],
   (cartIds, prices, quantities) => {
-    return cartIds.reduce((acc, id) => {
+    const sum = cartIds.reduce((acc, id) => {
       const price = prices.find((p) => p[id])![id];
       const quantity = quantities.find((q) => q[id])![id];
       return acc + price * quantity;
     }, 0);
+    return Math.round((sum + Number.EPSILON) * 100) / 100;
   }
 );
 

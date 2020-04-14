@@ -38,8 +38,8 @@ export const getTotalPrice = createSelector(
   (cartIds, prices, quantities) => {
     const sum = cartIds.reduce((acc, id) => {
       const price = prices.find((p) => p[id])![id];
-      const quantity = quantities.find((q) => q[id])![id];
-      return acc + price * quantity;
+      let quantity = quantities.find((q) => q[id])?.id;
+      return acc + price * (quantity || 0);
     }, 0);
     return Math.round((sum + Number.EPSILON) * 100) / 100;
   }

@@ -3,6 +3,7 @@ import Content from "../Content";
 import Header from "../Header/Header";
 import { useDispatch } from "react-redux";
 import { fetchProducts } from "../../redux/catalogSlice";
+import "./App.scss";
 
 function App() {
   const dispatch = useDispatch();
@@ -10,9 +11,10 @@ function App() {
     dispatch(fetchProducts());
   }, [dispatch]);
   return (
-    <Router>
+    <div className="App">
       <Header />
       <Content />
+    </div>
   );
 }
 

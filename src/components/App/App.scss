@@ -1,0 +1,12 @@
+@import "../../variables.scss";
+
+.App {
+  height: 100%;
+  color: $blue_dark;
+  padding: 0 20%;
+}
+
+:any-link {
+  color: $blue_dark;
+  text-decoration: none;
+}

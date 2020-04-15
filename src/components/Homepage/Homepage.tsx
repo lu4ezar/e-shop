@@ -6,6 +6,7 @@ import { cartSlice } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Product, Id } from "../../interfaces";
 import { selectCatalog } from "../../redux/selectors";
+import Catalog from "../Catalog";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -15,9 +16,10 @@ const Homepage = () => {
     dispatch(addProduct(id));
   };
   return (
-    <div>
+    <div className="Homepage">
       <HeadingText pxSize={32}>Homepage</HeadingText>
       <HeadingText pxSize={16}>Products we sell:</HeadingText>
+      <Catalog />
       <div className="product_gallery">
         {catalog
           ? catalog.map(({ isbn13, ...productData }: Product) => (

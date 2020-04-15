@@ -50,7 +50,15 @@ const Cart = () => {
       </div>
       <div>Total Products: {totalProduct}</div>
       <div>Total Sum: {totalPrice}</div>
-      <Link to="/order">Process Order</Link>
+      {totalProduct ? (
+        <button className="cart_btn">
+          <Link to="/order">Process Order</Link>
+        </button>
+      ) : (
+        <button className="cart_btn">
+          <Link to="/">Go to main</Link>
+        </button>
+      )}
     </div>
   );
 };

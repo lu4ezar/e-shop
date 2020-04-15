@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .Cart {
   display: flex;
   flex-direction: column;
@@ -7,11 +9,41 @@
 .cart_products {
   display: flex;
   flex-direction: column;
+  width: 90%;
   margin: 3em;
-  width: 60%;
 }
 
 .cart_product {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin: 1em 0;
+  & > span {
+    flex-basis: 20%;
+  }
+}
+
+.btn-group {
+  border-radius: 4px;
+  & button {
+    background-color: $green;
+    border: 1px solid $blue;
+    color: $white;
+    cursor: pointer;
+    float: left;
+    padding: 0.5em;
+    width: 3em;
+    font-size: large;
+    font-weight: bold;
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    &:not(:last-child) {
+      border-right: none;
+    }
+    &:not(:first-child) {
+      border-left: none;
+    }
+  }
 }

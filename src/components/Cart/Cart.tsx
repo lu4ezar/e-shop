@@ -35,14 +35,16 @@ const Cart = () => {
             {title}
             <span>{price}</span>
             <span>Qty: {quantity}</span>
-            <button
-              onClick={() => handleDecrement(id)}
-              disabled={quantity === 1}
-            >
-              -
-            </button>
-            <button onClick={() => handleAdd(id)}>+</button>
-            <button onClick={() => handleDelete(id)}>X</button>
+            <div className="btn-group">
+              <button
+                onClick={() => handleDecrement(id)}
+                disabled={quantity === 1}
+              >
+                -
+              </button>
+              <button onClick={() => handleAdd(id)}>+</button>
+              <button onClick={() => handleDelete(id)}>X</button>
+            </div>
           </div>
         ))}
       </div>

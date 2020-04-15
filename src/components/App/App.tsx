@@ -11,10 +11,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchProducts());
-    return () => {
-      dispatch(fetchProducts());
-    };
-  });
+  }, [dispatch]);
   return (
     <Router>
       <Header />

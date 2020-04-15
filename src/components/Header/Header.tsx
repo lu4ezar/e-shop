@@ -4,8 +4,8 @@ import "./Header.scss";
 import CartWidget from "../CartWidget";
 
 const Header = () => (
-  <header>
-    <nav>
+  <header className="Header">
+    <nav className="container">
       <h1>
         <Link to="/">E-Shop</Link>
       </h1>

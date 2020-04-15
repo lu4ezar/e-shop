@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Product, Id } from "../../interfaces";
 import { selectCatalog } from "../../redux/selectors";
 
-const Home = () => {
+const Homepage = () => {
   const dispatch = useDispatch();
   const { addProduct } = cartSlice.actions;
   const catalog = useSelector(selectCatalog);
@@ -33,4 +33,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Homepage;

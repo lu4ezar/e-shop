@@ -20,6 +20,10 @@ export interface Cart {
   quantity: Quantity;
 }
 
+export interface CartItem {
+  [id: string]: number;
+}
+
 export interface CartInfo {
   id: Id;
   title: Title;

@@ -22,3 +22,13 @@ body,
   background: $white;
   color: $blue_dark;
 }
+
+.container {
+  padding: 0 5%;
+  @media (min-width: 768px) {
+    padding: 0 10%;
+  }
+  @media (min-width: 1200px) {
+    padding: 0 20%;
+  }
+}

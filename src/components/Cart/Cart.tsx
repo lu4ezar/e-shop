@@ -15,8 +15,11 @@ const Cart = () => {
   const totalProduct = useSelector(getTotalProduct);
   const totalPrice = useSelector(getTotalPrice);
   const cartInfo = useSelector(getCartProductsInfo);
-  const { removeProduct, deleteProduct } = cartSlice.actions;
+  const { addProduct, removeProduct, deleteProduct } = cartSlice.actions;
   const dispatch = useDispatch();
+  const handleAdd = (id: Id) => {
+    dispatch(addProduct(id));
+  };
   const handleDelete = (id: Id) => {
     dispatch(deleteProduct(id));
   };
@@ -32,14 +35,20 @@ const Cart = () => {
             {title}
             <span>{price}</span>
             <span>Qty: {quantity}</span>
-            <button onClick={() => handleDecrement(id)}> -1 </button>
-            <button onClick={() => handleDelete(id)}>DELETE</button>
+            <button
+              onClick={() => handleDecrement(id)}
+              disabled={quantity === 1}
+            >
+              -
+            </button>
+            <button onClick={() => handleAdd(id)}>+</button>
+            <button onClick={() => handleDelete(id)}>X</button>
           </div>
         ))}
       </div>
       <div>Total Products: {totalProduct}</div>
       <div>Total Sum: {totalPrice}</div>
-      <Link to="/order">BUY</Link>
+      <Link to="/order">Process Order</Link>
     </div>
   );
 };

@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Cart } from "../interfaces";
+import { Cart, CartItem } from "../interfaces";
 
 export const cartSlice = createSlice({
   name: "cart",
-  initialState: {} as Cart,
+  initialState: {} as CartItem,
   reducers: {
     addProduct: (state, action: PayloadAction<Cart["id"]>) => {
       const { payload } = action;
-      const curValue = (state[payload as keyof Cart] as number) || 0;
+      const curValue = state[payload] || 0;
       return {
         ...state,
         [payload]: curValue + 1,
@@ -15,7 +15,7 @@ export const cartSlice = createSlice({
     },
     removeProduct: (state, action: PayloadAction<Cart["id"]>) => {
       const { payload } = action;
-      const curValue = (state[payload as keyof Cart] as number) || 0;
+      const curValue = state[payload] || 0;
       return {
         ...state,
         [payload]: curValue >= 1 ? curValue - 1 : 0,
@@ -23,7 +23,7 @@ export const cartSlice = createSlice({
     },
     deleteProduct: (state, action: PayloadAction<Cart["id"]>) => {
       const { payload } = action;
-      delete state[payload as keyof Cart];
+      delete state[payload];
     },
   },
 });

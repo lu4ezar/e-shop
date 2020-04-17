@@ -29,35 +29,45 @@ const Cart = () => {
   return (
     <div className="Cart">
       <HeadingText pxSize={32}>Cart</HeadingText>
-      <div className="cart_products">
-        {cartInfo.map(({ id, title, price, quantity }: CartInfo) => (
-          <div className="cart_product" key={id}>
-            {title}
-            <span>{price}</span>
-            <span>Qty: {quantity}</span>
-            <div className="btn-group">
-              <button
-                onClick={() => handleDecrement(id)}
-                disabled={quantity === 1}
-              >
-                -
-              </button>
-              <button onClick={() => handleAdd(id)}>+</button>
-              <button onClick={() => handleDelete(id)}>&times;</button>
+      {cartInfo.length ? (
+        <div className="cart_products">
+          {cartInfo.map(({ id, name, price, quantity }: any) => (
+            <div className="cart_product" key={id.toString()}>
+              <span>{name}</span>
+              <span>${price}</span>
+              <span>Qty: {quantity}</span>
+              <div className="btn-group">
+                <button
+                  onClick={() => handleDecrement(id)}
+                  disabled={quantity === 1}
+                >
+                  -
+                </button>
+                <button onClick={() => handleAdd(id)}>+</button>
+                <button onClick={() => handleDelete(id)}>&times;</button>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-      <div>Total Products: {totalProduct}</div>
-      <div>Total Sum: {totalPrice}</div>
-      {totalProduct ? (
-        <button className="cart_btn">
-          <Link to="/order">Process Order</Link>
-        </button>
+          ))}
+        </div>
+      ) : null}
+      {totalProduct && totalPrice ? (
+        <>
+          <div>Total Products: {totalProduct}</div>
+          <div>Total Sum: {totalPrice}</div>
+        </>
       ) : (
-        <button className="cart_btn">
-          <Link to="/">Go to main</Link>
-        </button>
+        <div>Your cart is empty.</div>
+      )}
+      {totalProduct ? (
+        <Link to="/order">
+          <button className="cart_btn">Process Order</button>
+        </Link>
+      ) : (
+        <div className="empty">
+          <Link to="/">
+            <button className="cart_btn">Go to main</button>
+          </Link>
+        </div>
       )}
     </div>
   );

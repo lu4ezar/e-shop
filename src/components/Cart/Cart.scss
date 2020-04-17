@@ -2,9 +2,13 @@
 
 .Cart {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   font-size: 1.5em;
+  margin: 0 auto;
+  padding: 2em 0 4em 0;
 }
 
 .cart_products {
@@ -16,6 +20,7 @@
 
 .cart_product {
   display: flex;
+  flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
   margin: 1em 0;
@@ -28,11 +33,15 @@
   height: 3em;
   font-weight: bold;
   font-size: 1.5em;
-  border: 2px solid $text;
+  border: 4px solid $text;
   border-radius: 8px;
   cursor: pointer;
   background: $light;
   transition: all 0.2s ease-in-out;
+  & a {
+    color: $text;
+    height: 100%;
+  }
   &:hover {
     color: $light;
     background: $text;
@@ -46,15 +55,18 @@
 .btn-group {
   border-radius: 4px;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   & button {
     background-color: $light;
-    border: 1px solid $blue;
+    border: 2px solid $text;
     color: $white;
     cursor: pointer;
     float: left;
     padding: 0.5em;
     width: 3em;
-    font-size: large;
+    font-size: 0.5em;
     font-weight: bold;
     &:disabled {
       opacity: 0.5;
@@ -62,6 +74,14 @@
     }
     &:not(:last-child) {
       border-right: none;
+    }
+    &:first-child {
+      border-bottom-left-radius: 4px;
+      border-top-left-radius: 4px;
+    }
+    &:last-child {
+      border-bottom-right-radius: 4px;
+      border-top-right-radius: 4px;
     }
   }
 }

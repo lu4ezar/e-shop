@@ -24,6 +24,7 @@ body,
 }
 
 .container {
+  flex-grow: 1;
   padding: 0 5%;
   @media (min-width: 768px) {
     padding: 0 10%;
@@ -33,6 +34,9 @@ body,
   }
 }
 
-button::-moz-focus-inner {
-  border: none;
+:focus {
+  outline: none;
+}
+::-moz-focus-inner {
+  border: 0;
 }

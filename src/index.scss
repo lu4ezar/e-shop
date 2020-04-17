@@ -24,6 +24,7 @@ body,
 }
 
 .container {
+  display: flex;
   flex-grow: 1;
   padding: 0 5%;
   @media (min-width: 768px) {

@@ -5,22 +5,25 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin: 0 1.5em;
   transition: all 0.2s ease-in-out;
+  min-height: 5em;
+  width: 5em;
   & img {
     position: absolute;
     top: 15%;
     opacity: 0.5;
     height: 75%;
-    filter: invert(1);
+    filter: invert(1) opacity(50%);
   }
   & .text {
     z-index: 100;
     font-size: 1.5em;
     font-weight: bold;
-    color: $text;
   }
   &:hover {
     transform: scale(1.1);
+  }
+  @media (min-width: 1200px) {
+    margin: 0 1.5em;
   }
 }

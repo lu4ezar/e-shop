@@ -9,9 +9,9 @@ const CartWidget = () => {
   const totalPrice = useSelector(getTotalPrice);
   return (
     <div className="CartWidget">
-      <img className="fill" src={cartSVG} alt="cart" />
-      <div className="text">{totalProducts}</div>
-      <div className="text">${totalPrice}</div>
+      <img src={cartSVG} alt="cart" />
+      {!!totalProducts && <div className="text">{totalProducts}</div>}
+      {!!totalPrice && <div className="text">${totalPrice}</div>}
     </div>
   );
 };

@@ -1,0 +1,32 @@
+@import "../../variables.scss";
+
+.Pager {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+  & .arrow_btn {
+    border: none;
+    background-color: $light;
+    cursor: pointer;
+    border-radius: 14px;
+    outline: none;
+    border: 2px solid $blue;
+    fill: red;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  & svg {
+    & path {
+      fill: $text;
+    }
+    height: 2em;
+  }
+  & .page_number {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0 1em;
+  }
+}

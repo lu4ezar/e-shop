@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Product, Id } from "../../interfaces";
 import { selectCatalog } from "../../redux/selectors";
 import Catalog from "../Catalog";
+import Pager from "../Pager";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const Homepage = () => {
             ))
           : null}
       </div>
+      <Pager />
     </div>
   );
 };

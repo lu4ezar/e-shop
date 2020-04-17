@@ -6,6 +6,8 @@ export const selectCart = (state: RootState) => state.cart;
 
 export const selectCatalog = (state: RootState) => state.catalog;
 
+export const selectPage = (state: RootState) => state.page;
+
 export const getTotalProduct = createSelector(selectCart, (cart) =>
   Object.values(cart).reduce((acc, cur) => acc + cur, 0)
 );

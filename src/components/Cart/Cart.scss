@@ -6,6 +6,7 @@
   align-items: center;
   font-size: 1.5em;
 }
+
 .cart_products {
   display: flex;
   flex-direction: column;
@@ -23,10 +24,30 @@
   }
 }
 
+.cart_btn {
+  height: 3em;
+  font-weight: bold;
+  font-size: 1.5em;
+  border: 2px solid $text;
+  border-radius: 8px;
+  cursor: pointer;
+  background: $light;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: $light;
+    background: $text;
+    border-color: $light;
+    & a {
+      color: $light;
+    }
+  }
+}
+
 .btn-group {
   border-radius: 4px;
+  font-weight: bold;
   & button {
-    background-color: $green;
+    background-color: $light;
     border: 1px solid $blue;
     color: $white;
     cursor: pointer;
@@ -41,9 +62,6 @@
     }
     &:not(:last-child) {
       border-right: none;
-    }
-    &:not(:first-child) {
-      border-left: none;
     }
   }
 }

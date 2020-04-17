@@ -43,7 +43,7 @@ const Cart = () => {
                 -
               </button>
               <button onClick={() => handleAdd(id)}>+</button>
-              <button onClick={() => handleDelete(id)}>X</button>
+              <button onClick={() => handleDelete(id)}>&times;</button>
             </div>
           </div>
         ))}

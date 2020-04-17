@@ -1,15 +1,17 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getTotalProduct } from "../../redux/selectors";
+import { getTotalProduct, getTotalPrice } from "../../redux/selectors";
+import cartSVG from "../../img/cart.svg";
 import "./CartWidget.scss";
 
 const CartWidget = () => {
   const totalProducts = useSelector(getTotalProduct);
+  const totalPrice = useSelector(getTotalPrice);
   return (
     <div className="CartWidget">
-      <div>CartWidget</div>
-      <div>{totalProducts}</div>
-      <div>Go to cart</div>
+      <img className="fill" src={cartSVG} alt="cart" />
+      <div className="text">{totalProducts}</div>
+      <div className="text">${totalPrice}</div>
     </div>
   );
 };

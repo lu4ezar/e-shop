@@ -7,8 +7,12 @@ const ProductCard = ({ name, image, price, onClick }: ProductCardProps) => (
   <div className="ProductCard">
     <HeadingText pxSize={16}>{name}</HeadingText>
     <img alt="product" src={image} />
-    <span>${price}</span>
-    <button onClick={onClick}>Add to cart</button>
+    <div className="buy_button">
+      <div className="buy_button__item">${price}</div>
+      <button className="buy_button__item" onClick={onClick}>
+        Add to cart
+      </button>
+    </div>
   </div>
 );
 

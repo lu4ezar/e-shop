@@ -4,11 +4,9 @@ export const pageSlice = createSlice({
   name: "page",
   initialState: 1,
   reducers: {
-    incrementPage: (state) => {
-      state = state + 1;
-    },
+    incrementPage: (state) => state + 1,
     decrementPage: (state) => {
-      if (state > 1) state = state - 1;
+      if (state > 1) return state - 1;
     },
   },
 });

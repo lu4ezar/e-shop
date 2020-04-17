@@ -4,12 +4,16 @@
   position: sticky;
   top: 0;
   background: $text;
+  color: $light;
   z-index: 1000;
+  & a {
+    color: $light;
+  }
 }
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 4px solid $green;
+  border-bottom: 4px solid $light;
 }

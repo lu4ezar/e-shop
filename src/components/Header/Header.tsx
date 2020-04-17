@@ -6,9 +6,9 @@ import CartWidget from "../CartWidget";
 const Header = () => (
   <header className="Header">
     <nav className="container">
-      <h1>
-        <Link to="/">E-Shop</Link>
-      </h1>
+      <Link to="/">
+        <h1>E-Shop</h1>
+      </Link>
       <Link to="/cart">
         <CartWidget />
       </Link>

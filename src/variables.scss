@@ -2,3 +2,20 @@ $light: #bfc3c7;
 $white: #e7ebe0ff;
 $blue: #6bb1be;
 $text: #0e527b;
+
+@mixin large-button {
+  height: 3em;
+  width: 6em;
+  font-weight: bold;
+  font-size: 1em;
+  border: 4px solid $text;
+  border-radius: 8px;
+  cursor: pointer;
+  background: $light;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: $light;
+    background: $text;
+    border-color: $light;
+  }
+}

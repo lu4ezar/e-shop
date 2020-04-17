@@ -1,8 +1,44 @@
+@import "../../variables.scss";
+
 .ProductCard {
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
   align-items: center;
-  box-sizing: border-box;
-  border: 3px solid #351f4a;
+  box-shadow: 1px 2px 4px $blue;
   border-radius: 4px;
+  width: 40vh;
+  height: 40vh;
+  margin: 1em auto;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 2px 4px 8px $blue;
+    transform: scale(1.05);
+  }
+  @media (min-width: 768px) {
+    width: 30vw;
+    height: 30vw;
+  }
+  @media (min-width: 1200px) {
+    width: 18vw;
+    height: 18vw;
+  }
+  img {
+    width: 100%;
+    max-height: 70%;
+    min-height: 70%;
+  }
+  & button {
+    background: $text;
+    color: $light;
+    border: none;
+    border-top: 2px solid $light;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    height: 100%;
+    width: 100%;
+    font-weight: bold;
+    letter-spacing: 4px;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
 }

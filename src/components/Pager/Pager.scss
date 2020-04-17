@@ -6,16 +6,18 @@
   align-items: center;
   margin: 1em;
   & .arrow_btn {
-    border: none;
+    display: flex;
     background-color: $light;
     cursor: pointer;
     border-radius: 14px;
-    outline: none;
     border: 2px solid $blue;
-    fill: red;
     transition: all 0.2s ease-in-out;
     &:hover {
       transform: scale(1.05);
+    }
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
     }
   }
   & svg {

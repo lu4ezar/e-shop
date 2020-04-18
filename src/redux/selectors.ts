@@ -1,43 +1,78 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { RootState } from "./store";
-import { Product, CartItem } from "../interfaces";
+import { Product, CartItem, CartPrice, Id } from "../interfaces";
 
-export const selectCart = (state: RootState) => state.cart;
+const PAGE_SIZE = 12;
 
-export const selectCatalog = (state: RootState) => state.catalog;
+const selectCart = (state: RootState) => state.cart;
 
 export const selectPage = (state: RootState) => state.page;
 
-export const getTotalProduct = createSelector(selectCart, (cart) =>
-  Object.values(cart).reduce((acc, cur) => acc + cur, 0)
+const selectProducts = (state: RootState) => state.catalog.products;
+
+export const selectCategories = (state: RootState) => state.catalog.categories;
+
+export const selectFilterCatalog = (state: RootState) => state.filterCatalog;
+
+const getFilteredProductList = createSelector(
+  [selectProducts, selectFilterCatalog],
+  (products, filter) => {
+    return products.filter((product: Product) =>
+      filter === "all" ? true : product.category === filter
+    );
+  }
 );
 
-const getCartIds = createSelector(selectCart, (cart) => Object.keys(cart));
+export const getVisibleList = createSelector(
+  [getFilteredProductList, selectPage],
+  (products, page) => {
+    return products.filter(
+      (_, index) => index >= PAGE_SIZE * (page - 1) && index < PAGE_SIZE * page
+    );
+  }
+);
+
+export const getTotalPages = createSelector(
+  getFilteredProductList,
+  (filteredList) => Math.ceil(filteredList.length / PAGE_SIZE)
+);
+
+export const getTotalProduct = createSelector(selectCart, (cart) =>
+  Object.values(cart).reduce(
+    (acc, cartItemQuantity) => acc + cartItemQuantity,
+    0
+  )
+);
+
+const getCartIds = createSelector(selectCart, (cart) =>
+  Object.keys(cart).map((id): Id => +id)
+);
 
 const getCartPrices = createSelector(
-  [selectCatalog, getCartIds],
-  (catalog, ids): CartItem =>
-    ids.reduce((acc, cur) => {
-      const { price } = catalog.find(
-        (product: Product) => product.isbn13 === cur
-      ) as Product;
-      const parsedPrice = parseFloat(price.replace(/[$]/g, ""));
-      return { ...acc, [cur]: parsedPrice };
-    }, {})
+  [selectProducts, getCartIds],
+  (products, ids) => {
+    return ids.reduce((acc, id) => {
+      const product = products.find((product) => product.id === +id);
+      return { ...acc, [id]: product?.price || 0 };
+    }, {} as CartPrice);
+  }
 );
 
-export const getCartQuantities = createSelector(
+const getCartQuantities = createSelector(
   [selectCart, getCartIds],
   (cart, ids): CartItem =>
-    ids.reduce((acc, cur) => ({ ...acc, [cur]: cart[cur] }), {})
+    ids.reduce(
+      (acc, cur) => ({ ...acc, [cur as number]: cart[cur] }),
+      {} as CartItem
+    )
 );
 
 export const getTotalPrice = createSelector(
   [getCartIds, getCartPrices, getCartQuantities],
   (cartIds, prices, quantities) => {
-    const sum = cartIds.reduce((acc, cur) => {
-      const price = prices[cur];
-      const quantity = quantities[cur];
+    const sum = cartIds.reduce((acc, id) => {
+      const price = prices[id as keyof CartPrice];
+      const quantity = quantities[id];
       return acc + price * quantity;
     }, 0);
     return Math.round((sum + Number.EPSILON) * 100) / 100;
@@ -45,13 +80,13 @@ export const getTotalPrice = createSelector(
 );
 
 export const getCartProductsInfo = createSelector(
-  [getCartIds, getCartQuantities, selectCatalog],
-  (cartIds, quantities, catalog) => {
+  [getCartIds, getCartQuantities, selectProducts],
+  (cartIds, quantities, products) => {
     return cartIds.map((id) => {
-      const product = catalog.find((product) => product.isbn13 === id)!;
-      const { title, price } = product;
-      const quantity = quantities[id];
-      return { id, title, price, quantity };
+      const product = products.find((product: Product) => product.id === id)!;
+      const { name, price } = product;
+      const quantity = quantities[id as keyof CartItem];
+      return { id, name, price, quantity };
     });
   }
 );

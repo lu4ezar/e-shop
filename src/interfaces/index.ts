@@ -63,6 +63,7 @@ export interface FormState {
   address: string;
   date: string;
   time: string;
+  showMessage: "show" | "hide";
 }
 
 export interface ProductCardProps extends Product {

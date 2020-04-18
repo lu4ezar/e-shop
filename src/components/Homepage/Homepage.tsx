@@ -4,14 +4,14 @@ import "./Homepage.scss";
 import { cartSlice } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Product, Id } from "../../interfaces";
-import { getProducts } from "../../redux/selectors";
+import { getVisibleList } from "../../redux/selectors";
 import Catalog from "../Catalog";
 import Pager from "../Pager";
 
 const Homepage = () => {
   const dispatch = useDispatch();
   const { addProduct } = cartSlice.actions;
-  const catalog = useSelector(getProducts);
+  const catalog = useSelector(getVisibleList);
   const handleClick = (id: Id) => {
     dispatch(addProduct(id));
   };
@@ -22,7 +22,7 @@ const Homepage = () => {
         {catalog
           ? catalog.map((product: Product) => (
               <ProductCard
-                key={product.id.toString()}
+                key={product.id}
                 {...product}
                 onClick={() => handleClick(product.id)}
               />

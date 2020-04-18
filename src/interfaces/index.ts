@@ -1,43 +1,70 @@
-export type Title = string;
-export type Subtitle = string;
-export type Id = string;
-export type Price = string;
+export type ProductName = string;
+export type Id = number;
+export type Price = number;
 export type Image = string;
-export type Url = string;
 export type Quantity = number;
+
+type CategoryName =
+  | "category1"
+  | "category2"
+  | "category3"
+  | "category4"
+  | "category5"
+  | "category6";
+
+export interface Product {
+  id: Id;
+  name: ProductName;
+  price: Price;
+  image: Image;
+  category: CategoryName;
+}
+
+export interface Category {
+  name: CategoryName;
+  image: Image;
+  subcategories?: Category[];
+}
+
+export interface Catalog {
+  products: Product[];
+  categories: Category[];
+}
 
 export interface Cart {
   [id: number]: Id;
   quantity: Quantity;
 }
 
-export interface Product {
-  title: Title;
-  subtitle: Subtitle;
-  isbn13?: Id;
+export interface CartItem extends Cart {}
+
+export interface CartPrice {
+  [id: number]: Id;
   price: Price;
-  image: Image;
-  url?: Url;
-}
-
-export interface Cart {
-  id: Id;
-  quantity: Quantity;
-}
-
-export interface CartItem {
-  [id: string]: number;
 }
 
 export interface CartInfo {
   id: Id;
-  title: Title;
+  name: ProductName;
   price: Price;
   quantity: Quantity;
+}
+
+export type FormReducer = Partial<{
+  field: string;
+  value: string;
+  type: string;
+}>;
+
+export interface FormState {
+  name: string;
+  phone: string;
+  email: string;
+  address: string;
+  date: string;
+  time: string;
 }
 
 export interface ProductCardProps extends Product {
   onClick: () => void;
 }
-
-export type Catalog = Array<Product>;

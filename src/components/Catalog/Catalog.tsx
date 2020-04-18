@@ -4,6 +4,7 @@ import { selectCategories, selectFilterCatalog } from "../../redux/selectors";
 import { useSelector, useDispatch } from "react-redux";
 import { Category, FilterCatalog } from "../../interfaces";
 import { filterCatalogSlice } from "../../redux/filterCatalogSlice";
+import { pageSlice } from "../../redux/pageSlice";
 
 /*
   [category1, category2, category3] => [category1, category2.category3]
@@ -36,9 +37,11 @@ const Catalog = () => {
   const dispatch = useDispatch();
   const active = useSelector(selectFilterCatalog);
   const { setFilter } = filterCatalogSlice.actions;
+  const { dropPage } = pageSlice.actions;
   const handleClick = (e: SyntheticEvent) => {
     const { value } = e.currentTarget as HTMLButtonElement;
     dispatch(setFilter(value as FilterCatalog));
+    dispatch(dropPage());
   };
   const renderList = (data: Category[]) => {
     const renderPart = (el: Category): ReactNode => {

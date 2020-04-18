@@ -8,6 +8,7 @@ export const pageSlice = createSlice({
     decrementPage: (state) => {
       if (state > 1) return state - 1;
     },
+    dropPage: (state) => 1,
   },
 });
 

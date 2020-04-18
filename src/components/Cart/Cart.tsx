@@ -31,20 +31,22 @@ const Cart = () => {
       <HeadingText pxSize={32}>Cart</HeadingText>
       {cartInfo.length ? (
         <div className="cart_products">
-          {cartInfo.map(({ id, name, price, quantity }: any) => (
+          {cartInfo.map(({ id, name, price, quantity }: CartInfo) => (
             <div className="cart_product" key={id.toString()}>
-              <span>{name}</span>
-              <span>${price}</span>
-              <span>Qty: {quantity}</span>
-              <div className="btn-group">
-                <button
-                  onClick={() => handleDecrement(id)}
-                  disabled={quantity === 1}
-                >
-                  -
-                </button>
-                <button onClick={() => handleAdd(id)}>+</button>
-                <button onClick={() => handleDelete(id)}>&times;</button>
+              <span className="grid_item">{name}</span>
+              <span className="grid_item">${price * quantity}</span>
+              <span className="grid_item">Qty: {quantity}</span>
+              <div className="grid_item">
+                <div className="btn-group">
+                  <button
+                    onClick={() => handleDecrement(id)}
+                    disabled={quantity === 1}
+                  >
+                    -
+                  </button>
+                  <button onClick={() => handleAdd(id)}>+</button>
+                  <button onClick={() => handleDelete(id)}>&times;</button>
+                </div>
               </div>
             </div>
           ))}

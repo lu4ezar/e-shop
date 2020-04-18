@@ -26,6 +26,8 @@
   img {
     width: 100%;
     background: $text;
+    max-height: 70%;
+    object-fit: cover;
   }
   .buy_button {
     display: flex;

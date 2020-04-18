@@ -21,15 +21,18 @@ export interface Product {
 }
 
 export interface Category {
+  id: Id;
   name: CategoryName;
   image: Image;
-  subcategories?: Category[];
+  subcategory?: CategoryName | Category;
 }
 
 export interface Catalog {
   products: Product[];
   categories: Category[];
 }
+
+export type FilterCatalog = "all" | CategoryName;
 
 export interface Cart {
   [id: number]: Id;

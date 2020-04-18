@@ -1,5 +1,32 @@
+@import "../../variables.scss";
+
 .Catalog {
-  display: grid;
-  grid-area: catalog;
-  height: 100%;
+  display: flex;
+  & ul,
+  li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  .active {
+    background: $text;
+    color: $light;
+  }
+  .sub {
+    &:nth-child(2) {
+      border-top: 2px solid $text;
+    }
+  }
+  button {
+    border: none;
+    height: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      color: $light;
+      background: $text;
+      border-color: $light;
+    }
+  }
 }

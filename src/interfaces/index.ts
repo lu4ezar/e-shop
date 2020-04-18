@@ -6,6 +6,11 @@ export type Image = string;
 export type Url = string;
 export type Quantity = number;
 
+export interface Cart {
+  [id: number]: Id;
+  quantity: Quantity;
+}
+
 export interface Product {
   title: Title;
   subtitle: Subtitle;

@@ -5,33 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Category, FilterCatalog } from "../../interfaces";
 import { filterCatalogSlice } from "../../redux/filterCatalogSlice";
 import { pageSlice } from "../../redux/pageSlice";
-
-/*
-  [category1, category2, category3] => [category1, category2.category3]
-*/
-const prepareData = (data: Category[]) => {
-  const findSubs = (el: Category): Category => {
-    const sub = data.find((sub) => {
-      return el.subcategory ? sub.name === el.subcategory : false;
-    }) as Category;
-    if (sub.subcategory) {
-      return { ...el, subcategory: findSubs(sub) };
-    }
-    return { ...el, subcategory: { ...sub } };
-  };
-
-  return data.reduce((acc: Category[], cat: Category) => {
-    const hasParentNode = data.find(
-      (el: Category) => el.subcategory && el.subcategory === cat.name
-    );
-    if (hasParentNode) return [...acc];
-    if (!cat.subcategory) {
-      return [...acc, { ...cat }];
-    }
-    const catWithSubcategories = findSubs(cat);
-    return [...acc, { ...catWithSubcategories }];
-  }, []);
-};
+import { usePreparedData } from "./usePreparedData";
 
 const Catalog = () => {
   const dispatch = useDispatch();
@@ -76,7 +50,7 @@ const Catalog = () => {
     });
   };
   const catalog = useSelector(selectCategories);
-  const preparedData = prepareData(catalog);
+  const preparedData = usePreparedData(catalog);
   const list = renderList(preparedData);
 
   return (

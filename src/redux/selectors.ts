@@ -25,11 +25,13 @@ const getFilteredProductList = createSelector(
 
 export const getVisibleList = createSelector(
   [getFilteredProductList, selectPage],
-  (products, page) => {
-    return products.filter(
-      (_, index) => index >= PAGE_SIZE * (page - 1) && index < PAGE_SIZE * page
-    );
-  }
+  (products, page) =>
+    products
+      .filter(
+        (_, index) =>
+          index >= PAGE_SIZE * (page - 1) && index < PAGE_SIZE * page
+      )
+      .sort((a, b) => a.name.localeCompare(b.name))
 );
 
 export const getTotalPages = createSelector(

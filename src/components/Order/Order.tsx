@@ -38,7 +38,7 @@ const Order = () => {
     e.preventDefault();
     dispatch({ field: "showMessage", value: "show" });
     setTimeout(function () {
-      window.location.href = "/";
+      window.location.hash = process.env.PUBLIC_URL + "/";
     }, 2000);
   }
 

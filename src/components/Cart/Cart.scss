@@ -26,6 +26,10 @@
   }
 }
 
+.empty {
+  flex-basis: 50%;
+}
+
 .grid_item {
   display: flex;
   &:nth-child(odd) {

@@ -3,10 +3,11 @@ import { selectCategories } from "../../redux/selectors";
 import { useSelector } from "react-redux";
 import { Category } from "../../interfaces";
 
-export const usePreparedData = (data: any) => {
-  /*
+/*
     [category1, category2, category3] => [category1, category2.category3]
-  */
+*/
+
+export const usePreparedData = () => {
   const prepareData = (data: Category[]) => {
     const findSubs = (el: Category): Category => {
       const sub = data.find((sub) => {
@@ -29,6 +30,7 @@ export const usePreparedData = (data: any) => {
       return [...acc, { ...catWithSubcategories }];
     }, []);
   };
+
   const [preparedData, setPreparedData] = useState([] as Category[]);
   const catalog = useSelector(selectCategories);
   useEffect(() => {

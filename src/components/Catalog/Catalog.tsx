@@ -49,8 +49,8 @@ const Catalog = () => {
       return <li key={cat.id}>{renderPart(cat)}</li>;
     });
   };
-  const catalog = useSelector(selectCategories);
-  const preparedData = usePreparedData(catalog);
+
+  const preparedData = usePreparedData();
   const list = renderList(preparedData);
 
   return (

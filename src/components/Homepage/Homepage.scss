@@ -1,8 +1,15 @@
 .Homepage {
   width: 100%;
+  display: grid;
+  grid-template-areas:
+    "catalog product"
+    "catalog pager";
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr;
 }
 
 .product_gallery {
+  grid-area: product;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;

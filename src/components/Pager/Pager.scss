@@ -1,6 +1,7 @@
 @import "../../variables.scss";
 
 .Pager {
+  grid-area: pager;
   display: flex;
   justify-content: center;
   align-items: center;

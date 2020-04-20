@@ -1,10 +1,11 @@
 import React, { useReducer, SyntheticEvent, FormEvent } from "react";
 import HeadingText from "../shared/HeadingText";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getTotalPrice } from "../../redux/selectors";
 import "./Order.scss";
 import { Link } from "react-router-dom";
 import { FormState, FormReducer } from "../../interfaces";
+import { cartSlice } from "../../redux/cartSlice";
 
 const initialState: FormState = {
   name: "",
@@ -34,9 +35,13 @@ const Order = () => {
     dispatch({ field: name, value });
   };
 
+  const reduxDispatch = useDispatch();
+  const { dropCart } = cartSlice.actions;
+
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     dispatch({ field: "showMessage", value: "show" });
+    reduxDispatch(dropCart());
     setTimeout(function () {
       window.location.hash = process.env.PUBLIC_URL + "/";
     }, 2000);

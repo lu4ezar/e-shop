@@ -25,6 +25,7 @@ export const cartSlice = createSlice({
       const { payload } = action;
       delete state[payload];
     },
+    dropCart: (state) => (state = {} as Cart),
   },
 });
 
